@@ -3,6 +3,8 @@
 Sistema de gestión de inventario y préstamo de equipos tecnológicos para **Innovatech Solutions S.A.C.**  
 Caso práctico integrador · Construcción de Software · UPLA 2026-II
 
+**Repositorio:** https://github.com/CRAXCAT/TechAsset
+
 ## Descripción
 
 TechAsset centraliza el registro de usuarios, equipos y préstamos, aplica las 10 reglas de negocio del caso y
@@ -13,8 +15,8 @@ y contraseña temporal.
 - **Frontend:** React 19 · Vite 8 · React Router · CSS propio (tema claro/oscuro y responsive)
 - **Backend:** ASP.NET Core 10 · Entity Framework Core 10 · BCrypt.Net-Next · JWT Bearer
 - **Base de datos:** PostgreSQL 18 (`TechAssetDB`)
-- **Pruebas:** 50 escenarios de API · 12 comprobaciones de integridad · 39 capturas · 6 diagramas
-- **Informe:** 59 páginas, 49 tablas y 44 figuras en `docs/`
+- **Pruebas:** 50 escenarios de API · 12 comprobaciones de integridad · 40 capturas · 6 diagramas
+- **Informe:** 60 páginas, 50 tablas y 45 figuras en `docs/`
 
 ## Estructura
 
@@ -33,7 +35,7 @@ TechAsset/
 │  ├─ src/services/              api, auth, usuarios, equipos, préstamos, solicitudes, movimientos y reportes
 │  └─ src/utils/                 catálogos, formato y validaciones
 └─ docs/
-   ├─ capturas/                  39 evidencias de interfaz
+   ├─ capturas/                  40 evidencias de interfaz
    ├─ figuras/                   diagramas y logotipos
    ├─ scripts/                   datos, pruebas, capturas e informe
    ├─ pruebas-api.json           resultados de los 50 escenarios

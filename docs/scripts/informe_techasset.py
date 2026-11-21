@@ -107,6 +107,7 @@ SECCIONES = [
     (2, "Anexo E. Portal público de inicio"),
     (2, "Anexo F. Solicitudes y auditoría"),
     (2, "Anexo G. Pruebas de integridad"),
+    (2, "Anexo H. Repositorio público"),
 ]
 
 
@@ -559,7 +560,7 @@ def resumen(doc):
         "con componentes reutilizables. Se implementaron los 17 requerimientos funcionales y las 10 reglas de "
         "negocio del caso, tres actores, tres tablas del núcleo y dos tablas de extensión (Solicitudes y Movimientos), "
         "además de los seis indicadores solicitados. La verificación funcional ejecutó 50 escenarios de API y 12 "
-        "comprobaciones directas de integridad en PostgreSQL, todos conformes; además se documentaron 39 capturas de "
+        "comprobaciones directas de integridad en PostgreSQL, todos conformes; además se documentaron 40 capturas de "
         "interfaz y 6 diagramas técnicos. El backend compila sin errores ni advertencias y el frontend se empaqueta en 82 módulos.")
 
     banda = doc.add_table(rows=1, cols=6)
@@ -571,7 +572,7 @@ def resumen(doc):
         ("6", "INDICADORES"),
         ("26", "ENDPOINTS"),
         ("50/50", "PRUEBAS DE API"),
-        ("39", "CAPTURAS"),
+        ("40", "CAPTURAS"),
     ]
     for i, (valor, etiqueta) in enumerate(datos_banda):
         c = banda.rows[0].cells[i]
@@ -643,7 +644,7 @@ def resumen(doc):
             ("5. Integración de módulos", "3", "6.1 a 6.7",
              "React-API-PostgreSQL, transacciones, aprobación, migraciones, Swagger y evidencias."),
             ("6. Evaluación funcional", "4", "7.1 a 7.6, 8 y 9",
-             "50/50 pruebas de API, 12/12 comprobaciones de integridad, 39 capturas y trazabilidad."),
+             "50/50 pruebas de API, 12/12 comprobaciones de integridad, 40 capturas y trazabilidad."),
         ],
         [4.8, 1.2, 3.0, 7.8],
         "Correspondencia entre la rúbrica y el contenido del informe.",
@@ -1923,7 +1924,7 @@ def seccion_6(doc):
         "La barra superior muestra el estado de la conexión: «API y PostgreSQL en línea» cuando la consulta de resumen "
         "responde, «Verificando conexión...» mientras espera y «Sin conexión con la API» si falla. Esa señal es una "
         "evidencia visual de que el frontend está consumiendo datos reales y no un arreglo local.")
-    figura(doc, CAPTURAS / "23-swagger.png", "Swagger documenta los 20 endpoints y sus permisos.", ancho=16.0)
+    figura(doc, CAPTURAS / "23-swagger.png", "Swagger documenta los 26 endpoints y sus permisos.", ancho=16.0)
     tabla(
         doc,
         ["Verificación", "Resultado"],
@@ -1938,6 +1939,10 @@ def seccion_6(doc):
         [6.0, 10.0],
         "Evidencias de integración verificadas.",
     )
+    par(doc,
+        "El código completo se publicó en https://github.com/CRAXCAT/TechAsset. La Figura 45 del Anexo H muestra la "
+        "portada del repositorio con el README, la estructura del proyecto y la rama main; el repositorio es público y "
+        "no requiere autenticación para su consulta.")
 
     doc.add_heading("6.6 Consistencia de las operaciones", level=2)
     par(doc,
@@ -2026,7 +2031,7 @@ def seccion_7(doc):
         [
             ("API", "Python urllib + JSON", "Autenticación, permisos, validaciones, RN, filtros, solicitudes y reportes.", "50/50 conformes"),
             ("Integridad", "psql + transacciones revertidas", "Índices parciales, CHECK, claves foráneas y estados.", "12/12 rechazos correctos"),
-            ("Interfaz", "Playwright + Chromium", "Login, dashboard, formularios, solicitudes, aprobación, auditoría, filtros y móvil.", "39 capturas"),
+            ("Interfaz", "Playwright + Chromium", "Login, dashboard, formularios, solicitudes, aprobación, auditoría, filtros y móvil.", "40 capturas"),
             ("Compilación", "dotnet build / npm run build", "Backend y frontend.", "0 errores; 82 módulos"),
         ],
         [2.6, 5.2, 7.0, 2.8],
@@ -2342,7 +2347,7 @@ def seccion_9(doc):
         "La reutilización de 22 componentes, 10 hooks y 8 servicios redujo la duplicación y hizo que los cambios de estilo, validación y comportamiento se appliquen en un solo lugar.",
         "La validación en dos capas mejoró la experiencia y la integridad: el usuario recibe ayuda inmediata y la API rechaza cualquier dato inválido aunque la petición no provenga de la interfaz.",
         "El flujo de solicitud, aprobación transaccional, historial por rol y auditoría cubre las funciones de los tres actores y evita que el Colaborador acceda a información de otras cuentas.",
-        "La evaluación funcional con 50 escenarios de API, 12 comprobaciones de integridad y 39 capturas demuestra el funcionamiento integral y deja evidencia reproducible para la sustentación.",
+        "La evaluación funcional con 50 escenarios de API, 12 comprobaciones de integridad y 40 capturas demuestra el funcionamiento integral y deja evidencia reproducible para la sustentación.",
     ]:
         vineta(doc, texto)
 
@@ -2578,6 +2583,30 @@ def anexos(doc):
         )
     else:
         par(doc, "No se encontró docs/pruebas-integridad.json; ejecute docs/scripts/pruebas_integridad.py.")
+
+    doc.add_page_break()
+    doc.add_heading("Anexo H. Repositorio público", level=2)
+    par(doc,
+        "El código fuente, el README, los scripts de datos y pruebas, las capturas y el informe se publicaron en un "
+        "repositorio público de GitHub. La portada muestra la estructura del proyecto, la rama principal y el README "
+        "con las instrucciones de ejecución y las cuentas de demostración. El repositorio no requiere autenticación "
+        "para su consulta; la rama main concentra la versión entregada.")
+    figura(doc, CAPTURAS / "40-github-repositorio.png",
+           "Repositorio público del proyecto TechAsset en GitHub.", ancho=16.2)
+    tabla(
+        doc,
+        ["Elemento", "Valor"],
+        [
+            ("Repositorio", "https://github.com/CRAXCAT/TechAsset"),
+            ("Visibilidad", "Público"),
+            ("Rama principal", "main"),
+            ("Contenido", "Backend, frontend, README, scripts, capturas, figuras e informe PDF/DOCX."),
+            ("Verificación", "201 archivos · 48.66 MB al momento de la publicación."),
+        ],
+        [3.6, 13.0],
+        "Datos del repositorio público.",
+        fuente=7.8,
+    )
 
 
 # --------------------------------------------------------------------------

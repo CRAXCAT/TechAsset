@@ -37,3 +37,4 @@
 37-solicitud-registrada.png
 38-mi-historial.png
 39-equipos-colaborador.png
+40-github-repositorio.png
