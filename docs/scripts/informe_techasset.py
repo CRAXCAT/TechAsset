@@ -2601,7 +2601,7 @@ def anexos(doc):
             ("Visibilidad", "Público"),
             ("Rama principal", "main"),
             ("Contenido", "Backend, frontend, README, scripts, capturas, figuras e informe PDF/DOCX."),
-            ("Verificación", "201 archivos · 48.66 MB al momento de la publicación."),
+            ("Verificación", "Más de 200 archivos · aproximadamente 49 MB al momento de la publicación."),
         ],
         [3.6, 13.0],
         "Datos del repositorio público.",
