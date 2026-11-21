@@ -1,0 +1,40 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+TestResults/
+
+# Node / Vite
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Entorno y secretos locales
+.env
+.env.*
+appsettings.Production.json
+appsettings.Local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Sistema
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Generados por los scripts del informe
+docs/figuras/_cache/
+docs/figuras/_cache_*/
+docs/_*.png
+docs/*_sin_pie.pdf
+docs/*_pdf.docx

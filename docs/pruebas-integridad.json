@@ -1,0 +1,90 @@
+{
+  "resultados": [
+    {
+      "codigo": "DB-01",
+      "escenario": "Segundo préstamo activo para el mismo equipo",
+      "restriccion": "IX_Prestamos_EquipoActivo",
+      "rechazado": true,
+      "detalle": "ERROR:  llave duplicada viola restricción de unicidad «IX_Prestamos_EquipoActivo»"
+    },
+    {
+      "codigo": "DB-02",
+      "escenario": "Estado de equipo fuera del catálogo",
+      "restriccion": "CK_Equipos_Estado",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Equipos» viola la restricción «check» «CK_Equipos_Estado»"
+    },
+    {
+      "codigo": "DB-03",
+      "escenario": "Rol de usuario fuera del catálogo",
+      "restriccion": "CK_Usuarios_Rol",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Usuarios» viola la restricción «check» «CK_Usuarios_Rol»"
+    },
+    {
+      "codigo": "DB-04",
+      "escenario": "Préstamo con devolución anterior al préstamo",
+      "restriccion": "CK_Prestamos_Fechas",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Prestamos» viola la restricción «check» «CK_Prestamos_Fechas»"
+    },
+    {
+      "codigo": "DB-05",
+      "escenario": "Solicitud aprobada sin préstamo vinculado",
+      "restriccion": "CK_Solicitudes_Aprobacion",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Solicitudes» viola la restricción «check» «CK_Solicitudes_Aprobacion»"
+    },
+    {
+      "codigo": "DB-06",
+      "escenario": "Solicitud pendiente con préstamo vinculado",
+      "restriccion": "CK_Solicitudes_Aprobacion",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Solicitudes» viola la restricción «check» «CK_Solicitudes_Aprobacion»"
+    },
+    {
+      "codigo": "DB-07",
+      "escenario": "Segunda solicitud pendiente para el mismo equipo",
+      "restriccion": "IX_Solicitudes_EquipoPendiente",
+      "rechazado": true,
+      "detalle": "ERROR:  llave duplicada viola restricción de unicidad «IX_Solicitudes_EquipoPendiente»"
+    },
+    {
+      "codigo": "DB-08",
+      "escenario": "Estado de solicitud fuera del catálogo",
+      "restriccion": "CK_Solicitudes_Estado",
+      "rechazado": true,
+      "detalle": "ERROR:  el nuevo registro para la relación «Solicitudes» viola la restricción «check» «CK_Solicitudes_Estado»"
+    },
+    {
+      "codigo": "DB-09",
+      "escenario": "Eliminar un equipo con préstamo activo",
+      "restriccion": "FK_Prestamos_Equipos_EquipoId",
+      "rechazado": true,
+      "detalle": "ERROR:  update or delete on table \"Equipos\" violates RESTRICT setting of foreign key constraint \"FK_Prestamos_Equipos_EquipoId\" on table \"Prestamos\""
+    },
+    {
+      "codigo": "DB-10",
+      "escenario": "Eliminar un usuario con préstamos",
+      "restriccion": "FK_Prestamos_Usuarios_UsuarioId",
+      "rechazado": true,
+      "detalle": "ERROR:  update or delete on table \"Usuarios\" violates RESTRICT setting of foreign key constraint \"FK_Prestamos_Usuarios_UsuarioId\" on table \"Prestamos\""
+    },
+    {
+      "codigo": "DB-11",
+      "escenario": "Eliminar un usuario con solicitudes",
+      "restriccion": "FK_Solicitudes_Usuarios_UsuarioId",
+      "rechazado": true,
+      "detalle": "ERROR:  update or delete on table \"Usuarios\" violates RESTRICT setting of foreign key constraint \"FK_Prestamos_Usuarios_UsuarioId\" on table \"Prestamos\""
+    },
+    {
+      "codigo": "DB-12",
+      "escenario": "Eliminar un equipo con solicitudes",
+      "restriccion": "FK_Solicitudes_Equipos_EquipoId",
+      "rechazado": true,
+      "detalle": "ERROR:  update or delete on table \"Equipos\" violates RESTRICT setting of foreign key constraint \"FK_Prestamos_Equipos_EquipoId\" on table \"Prestamos\""
+    }
+  ],
+  "conformes": 12,
+  "total": 12
+}

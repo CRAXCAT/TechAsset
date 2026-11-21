@@ -1,0 +1,456 @@
+{
+  "resultados": [
+    {
+      "codigo": "A-01",
+      "escenario": "Inicio de sesión con credenciales válidas",
+      "entrada": "admin@innovatech.pe",
+      "http": 200,
+      "mensaje": "Operación correcta",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "A-02",
+      "escenario": "Inicio de sesión con contraseña incorrecta",
+      "entrada": "clave incorrecta",
+      "http": 401,
+      "mensaje": "Correo o contraseña incorrectos.",
+      "esperado": 401,
+      "cumple": true
+    },
+    {
+      "codigo": "A-03",
+      "escenario": "Consulta sin token de sesión",
+      "entrada": "GET /equipos sin Authorization",
+      "http": 401,
+      "mensaje": "No autorizado",
+      "esperado": 401,
+      "cumple": true
+    },
+    {
+      "codigo": "A-04",
+      "escenario": "Registrar usuario con rol Responsable",
+      "entrada": "POST /usuarios, rol=Responsable",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "A-05",
+      "escenario": "Deshabilitar usuario con rol Responsable (RN-09)",
+      "entrada": "PATCH /usuarios/{id}/activo",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "U-01",
+      "escenario": "Correo institucional duplicado (RN-08)",
+      "entrada": "rosa.quispe@innovatech.pe",
+      "http": 409,
+      "mensaje": "Ya existe un usuario registrado con ese correo institucional (RN-08).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "U-02",
+      "escenario": "Correo fuera del dominio corporativo",
+      "entrada": "diego.externo@gmail.com",
+      "http": 400,
+      "mensaje": "Revise los datos enviados: hay campos obligatorios o valores fuera de rango.",
+      "esperado": 400,
+      "cumple": true
+    },
+    {
+      "codigo": "E-01",
+      "escenario": "Código patrimonial duplicado (RN-07)",
+      "entrada": "TA-0001",
+      "http": 409,
+      "mensaje": "Ya existe un equipo con ese código patrimonial (RN-07).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "E-02",
+      "escenario": "Categoría fuera del catálogo",
+      "entrada": "categoria=Impresora 3D",
+      "http": 409,
+      "mensaje": "La categoría seleccionada no es válida.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "E-03",
+      "escenario": "Asignar Prestado manualmente",
+      "entrada": "estado=Prestado",
+      "http": 409,
+      "mensaje": "El estado Prestado solo se asigna al registrar un préstamo.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "E-04",
+      "escenario": "Eliminar equipo con historial (RN-06)",
+      "entrada": "TA-0002 con 2 préstamos",
+      "http": 409,
+      "mensaje": "No se puede eliminar un equipo con historial de préstamos (RN-06). Puede marcarlo como Baja.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-01",
+      "escenario": "Registrar préstamo válido",
+      "entrada": "TA-0002 a Ana Torres",
+      "http": 201,
+      "mensaje": "PR-6CFAC4 · Activo",
+      "esperado": 201,
+      "cumple": true
+    },
+    {
+      "codigo": "R-02",
+      "escenario": "Segundo préstamo activo del mismo equipo (RN-01)",
+      "entrada": "TA-0002 ya prestado",
+      "http": 409,
+      "mensaje": "El equipo ya tiene un préstamo activo (RN-01).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-03",
+      "escenario": "Préstamo de equipo en Mantenimiento (RN-02)",
+      "entrada": "TA-0017",
+      "http": 409,
+      "mensaje": "No se puede prestar un equipo en estado Mantenimiento (RN-02).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-04",
+      "escenario": "Préstamo de equipo en Baja (RN-03)",
+      "entrada": "TA-0018",
+      "http": 409,
+      "mensaje": "No se puede prestar un equipo en estado Baja (RN-03).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-05",
+      "escenario": "Devolución no posterior al préstamo (RN-04)",
+      "entrada": "misma fecha",
+      "http": 409,
+      "mensaje": "La fecha de devolución debe ser posterior a la fecha de préstamo (RN-04).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-06",
+      "escenario": "Observación menor al mínimo permitido",
+      "entrada": "observacion=abc",
+      "http": 400,
+      "mensaje": "Revise los datos enviados: hay campos obligatorios o valores fuera de rango.",
+      "esperado": 400,
+      "cumple": true
+    },
+    {
+      "codigo": "R-07",
+      "escenario": "Deshabilitar usuario sin préstamos activos",
+      "entrada": "Miguel Rojas",
+      "http": 200,
+      "mensaje": "miguel.rojas@innovatech.pe · Colaborador",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-08",
+      "escenario": "Préstamo a colaborador inactivo",
+      "entrada": "Miguel Rojas inactivo",
+      "http": 409,
+      "mensaje": "El colaborador está inactivo y no puede recibir préstamos.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-09",
+      "escenario": "Devolución sin observaciones (RN-10)",
+      "entrada": "observación vacía",
+      "http": 400,
+      "mensaje": "Revise los datos enviados: hay campos obligatorios o valores fuera de rango.",
+      "esperado": 400,
+      "cumple": true
+    },
+    {
+      "codigo": "R-10",
+      "escenario": "Registrar devolución válida",
+      "entrada": "observación completa",
+      "http": 200,
+      "mensaje": "PR-6CFAC4 · Devuelto",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-11",
+      "escenario": "Devolución repetida",
+      "entrada": "préstamo ya devuelto",
+      "http": 409,
+      "mensaje": "El préstamo ya fue devuelto.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "R-12",
+      "escenario": "Equipo disponible tras la devolución",
+      "entrada": "TA-0002",
+      "http": 200,
+      "mensaje": "Operación correcta",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-13",
+      "escenario": "Filtro de préstamos activos y paginación",
+      "entrada": "estado=Activo",
+      "http": 200,
+      "mensaje": "5 item(s) de 8 total",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-14",
+      "escenario": "Búsqueda por área y colaborador",
+      "entrada": "area=Desarrollo, texto=Ana",
+      "http": 200,
+      "mensaje": "3 item(s) de 3 total",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-15",
+      "escenario": "Registrar préstamo con rol Colaborador (RN-05)",
+      "entrada": "rol=Colaborador",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "R-16",
+      "escenario": "Indicadores del dashboard",
+      "entrada": "GET /reportes/resumen",
+      "http": 200,
+      "mensaje": "equipos=18, préstamos=18, área=Desarrollo",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-17",
+      "escenario": "Exportar préstamos a CSV",
+      "entrada": "GET /reportes/prestamos.csv",
+      "http": 200,
+      "mensaje": "Operación correcta",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-18",
+      "escenario": "Exportar inventario a CSV",
+      "entrada": "GET /reportes/equipos.csv",
+      "http": 200,
+      "mensaje": "Operación correcta",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "A-06",
+      "escenario": "Colaborador intenta consultar usuarios",
+      "entrada": "GET /usuarios",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "A-07",
+      "escenario": "Colaborador intenta exportar reportes",
+      "entrada": "GET /reportes/prestamos.csv",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "A-08",
+      "escenario": "Colaborador intenta consultar la auditoría",
+      "entrada": "GET /movimientos",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "R-19",
+      "escenario": "Historial del Colaborador limitado a sus propios préstamos",
+      "entrada": "GET /prestamos como Ana Torres",
+      "http": 200,
+      "mensaje": "3 préstamo(s), todos propios",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "R-20",
+      "escenario": "Administrador consulta el historial global",
+      "entrada": "GET /prestamos como Administrador",
+      "http": 200,
+      "mensaje": "18 préstamo(s) visibles",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "S-01",
+      "escenario": "Colaborador registra una solicitud válida",
+      "entrada": "POST /solicitudes · TA-0008",
+      "http": 201,
+      "mensaje": "SOL-545EE7 · Pendiente",
+      "esperado": 201,
+      "cumple": true
+    },
+    {
+      "codigo": "S-02",
+      "escenario": "Solicitud duplicada para un equipo con pendiente",
+      "entrada": "POST /solicitudes · TA-0008",
+      "http": 409,
+      "mensaje": "Ya existe una solicitud pendiente para este equipo.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-03",
+      "escenario": "Colaborador intenta aprobar su propia solicitud",
+      "entrada": "PATCH /solicitudes/{id}/aprobar",
+      "http": 403,
+      "mensaje": "Acceso denegado",
+      "esperado": 403,
+      "cumple": true
+    },
+    {
+      "codigo": "S-04",
+      "escenario": "Responsable aprueba y genera el préstamo",
+      "entrada": "PATCH /solicitudes/{id}/aprobar",
+      "http": 200,
+      "mensaje": "SOL-545EE7 · Aprobada",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "S-05",
+      "escenario": "Aprobar una solicitud ya aprobada",
+      "entrada": "PATCH /solicitudes/{id}/aprobar",
+      "http": 409,
+      "mensaje": "La solicitud ya fue aprobada.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-06",
+      "escenario": "Crear solicitud para el flujo de rechazo",
+      "entrada": "POST /solicitudes · TA-0004",
+      "http": 201,
+      "mensaje": "SOL-71980B · Pendiente",
+      "esperado": 201,
+      "cumple": true
+    },
+    {
+      "codigo": "S-07",
+      "escenario": "Rechazo sin observación",
+      "entrada": "PATCH /solicitudes/{id}/rechazar",
+      "http": 409,
+      "mensaje": "Todo rechazo debe registrar una observación (mínimo 5 caracteres).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-08",
+      "escenario": "Rechazo con observación",
+      "entrada": "PATCH /solicitudes/{id}/rechazar",
+      "http": 200,
+      "mensaje": "SOL-71980B · Rechazada",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "S-09",
+      "escenario": "Solicitud de un equipo en Mantenimiento (RN-02)",
+      "entrada": "POST /solicitudes · TA-0017",
+      "http": 409,
+      "mensaje": "No se puede solicitar un equipo en estado Mantenimiento (RN-02).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-10",
+      "escenario": "Colaborador solo ve sus propias solicitudes",
+      "entrada": "GET /solicitudes como Ana Torres",
+      "http": 200,
+      "mensaje": "3 solicitud(es), todas propias",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "S-11",
+      "escenario": "Solicitud con devolución no posterior (RN-04)",
+      "entrada": "misma fecha",
+      "http": 409,
+      "mensaje": "La fecha de devolución debe ser posterior a la fecha de préstamo (RN-04).",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-12",
+      "escenario": "Crear solicitud para probar concurrencia",
+      "entrada": "POST /solicitudes · TA-0010",
+      "http": 201,
+      "mensaje": "SOL-64BDF3 · Pendiente",
+      "esperado": 201,
+      "cumple": true
+    },
+    {
+      "codigo": "S-13",
+      "escenario": "Consultar equipo antes de la aprobación",
+      "entrada": "GET /equipos/{id}",
+      "http": 200,
+      "mensaje": "Operación correcta",
+      "esperado": 200,
+      "cumple": true
+    },
+    {
+      "codigo": "S-14",
+      "escenario": "Ocupar el equipo con un préstamo directo",
+      "entrada": "POST /prestamos · TA-0010",
+      "http": 201,
+      "mensaje": "PR-997A01 · Activo",
+      "esperado": 201,
+      "cumple": true
+    },
+    {
+      "codigo": "S-15",
+      "escenario": "Aprobar solicitud con equipo ya no disponible",
+      "entrada": "PATCH /solicitudes/{id}/aprobar",
+      "http": 409,
+      "mensaje": "El equipo ya no está disponible para aprobar la solicitud.",
+      "esperado": 409,
+      "cumple": true
+    },
+    {
+      "codigo": "S-16",
+      "escenario": "Auditoría disponible para el Administrador",
+      "entrada": "GET /movimientos",
+      "http": 200,
+      "mensaje": "38 item(s) de 38 total",
+      "esperado": 200,
+      "cumple": true
+    }
+  ],
+  "conformes": 50,
+  "total": 50
+}
